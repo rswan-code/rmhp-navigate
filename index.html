@@ -3,525 +3,748 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>RMHP | Navigate Program | Pyx Health</title>
+<title>RMHP Navigate Program | Pyx Health</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;600;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+:root{--green:#49a601;--lgreen:#87d001;--slate:#2e4456;--blue:#0076bf;--teal:#29a4a2;--orange:#d6661a;--purple:#5542a7;--g1:#d2dce8;--g2:#eff1f3;--g3:#f6f6f6;--white:#fff}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Montserrat',sans-serif;background:#f6f6f6;color:#2e4456}
-.nav{background:#2e4456;padding:0 28px;display:flex;align-items:center;gap:0;position:sticky;top:0;z-index:100;flex-wrap:wrap}
-.nav-brand{color:#fff;font-family:'Roboto Slab',serif;font-weight:600;font-size:15px;padding:14px 20px 14px 0;border-right:1px solid rgba(255,255,255,.15);margin-right:12px;white-space:nowrap}
-.nav-brand span{color:#49a601}
-.nav-tabs{display:flex;flex-wrap:wrap;gap:0;flex:1}
-.nav-tab{color:rgba(255,255,255,.65);padding:14px 16px;font-size:12px;font-weight:500;cursor:pointer;border-bottom:3px solid transparent;transition:all .2s;white-space:nowrap}
-.nav-tab:hover{color:#fff;background:rgba(255,255,255,.05)}
-.nav-tab.active{color:#49a601;border-bottom-color:#49a601}
-.nav-right{margin-left:auto;display:flex;align-items:center;gap:10px}
-.tp-btn{background:rgba(73,166,1,.15);border:1px solid #49a601;color:#49a601;padding:7px 14px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap}
-.tp-btn.active{background:#49a601;color:#fff}
-.page{display:none;padding:28px}
-.page.active{display:block}
-.value-anchor{background:linear-gradient(135deg,#2e4456 0%,#1e3045 100%);border-radius:12px;padding:28px 32px;margin-bottom:24px;display:flex;align-items:center;gap:24px}
-.va-text h2{color:#fff;font-family:'Roboto Slab',serif;font-weight:300;font-size:22px;line-height:1.3;margin-bottom:6px}
-.va-text p{color:rgba(255,255,255,.7);font-size:13px;line-height:1.6}
-.va-text strong{color:#87d001}
-.section-header{display:flex;align-items:center;gap:12px;margin-bottom:18px;margin-top:28px}
-.section-label{background:#49a601;color:#fff;font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
-.section-label.teal{background:#29a4a2}
-.section-label.blue{background:#0076bf}
-.section-label.orange{background:#d6661a}
-.section-label.purple{background:#5542a7}
-.section-title{font-family:'Roboto Slab',serif;font-weight:600;font-size:17px;color:#2e4456}
-.section-divider{flex:1;height:1px;background:#d2dce8}
-.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:24px}
-.kpi{background:#fff;border-radius:10px;padding:20px;border-top:3px solid #d2dce8;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.kpi.green{border-top-color:#49a601}.kpi.teal{border-top-color:#29a4a2}.kpi.blue{border-top-color:#0076bf}
-.kpi.orange{border-top-color:#d6661a}.kpi.purple{border-top-color:#5542a7}.kpi.slate{border-top-color:#2e4456}.kpi.lgreen{border-top-color:#87d001}
-.kpi-lbl{font-size:11px;font-weight:700;color:#6b7f8f;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px}
-.kpi-val{font-size:28px;font-weight:700;color:#2e4456;line-height:1}
-.kpi-ctx{font-size:11px;color:#8a9aab;margin-top:5px}
-.kpi-vs{font-size:10px;color:#49a601;font-weight:700;margin-top:6px}
-.tp-block{display:none;background:#f0f9ec;border:1px solid #87d001;border-radius:8px;padding:16px;margin-top:10px;margin-bottom:16px}
+body{font-family:'Montserrat',sans-serif;background:var(--g3);color:var(--slate);font-size:14px}
+h1,h2,h3{font-family:'Roboto Slab',serif}
+
+/* NAV */
+.tab-nav{background:var(--slate);display:flex;align-items:center;padding:0 40px;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.25)}
+.nav-logo{font-family:'Roboto Slab',serif;font-weight:300;font-size:15px;color:#fff;letter-spacing:1px;margin-right:auto;padding:16px 0}
+.nav-logo span{color:var(--green);font-weight:600}
+.tab-btn{background:none;border:none;border-bottom:3px solid transparent;color:var(--g1);font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:19px 20px 16px;cursor:pointer;transition:all .2s}
+.tab-btn:hover{color:#fff}
+.tab-btn.active{color:var(--lgreen);border-bottom-color:var(--lgreen)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.tp-toggle-btn{margin-left:20px;background:rgba(135,208,1,.15);border:1px solid rgba(135,208,1,.4);border-radius:20px;color:var(--lgreen);font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:6px 14px;cursor:pointer;transition:all .2s}
+.tp-toggle-btn:hover,.tp-toggle-btn.active{background:var(--lgreen);color:var(--slate);border-color:var(--lgreen)}
+.tp-block{display:none;background:linear-gradient(135deg,rgba(41,164,162,.07),rgba(73,166,1,.05));border-left:3px solid var(--teal);border-radius:0 8px 8px 0;padding:16px 20px;margin:16px 0 8px;font-size:13px;line-height:1.7;color:var(--slate)}
 .tp-block.visible{display:block}
-.tp-block h4{color:#2a6200;font-size:12px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px}
-.tp-block h4::before{content:'▶';font-size:9px}
-.tp-block ul{padding-left:16px}
-.tp-block ul li{font-size:12px;color:#2e4456;line-height:1.6;margin-bottom:4px}
-.spotlight{background:linear-gradient(135deg,#49a601,#87d001);border-radius:10px;padding:24px;margin-bottom:24px;color:#fff}
-.spotlight.teal{background:linear-gradient(135deg,#29a4a2,#3acebf)}
-.spotlight.slate{background:linear-gradient(135deg,#2e4456,#1e3045)}
-.spotlight.blue{background:linear-gradient(135deg,#0076bf,#0cabec)}
-.spotlight.orange{background:linear-gradient(135deg,#d6661a,#ff9400)}
-.spotlight h3{font-family:'Roboto Slab',serif;font-weight:700;font-size:16px;margin-bottom:6px}
-.spotlight .tag{background:rgba(255,255,255,.2);font-size:10px;font-weight:700;padding:3px 8px;border-radius:12px;display:inline-block;margin-bottom:12px;letter-spacing:.5px}
-.spotlight p{font-size:12px;opacity:.9;line-height:1.6}
-.data-note{background:#fff8e6;border:1px solid #ff9400;border-radius:8px;padding:12px 16px;font-size:11px;color:#6b4c00;margin-bottom:20px;line-height:1.5}
-.billing-table{background:#fff;border-radius:10px;padding:24px;margin-bottom:24px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.barrier-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #eff1f3}
+.tp-label{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:8px}
+.tp-line{margin-bottom:10px}
+.tp-line:last-child{margin-bottom:0}
+.tp-stat{font-weight:700;color:var(--slate)}
+.tp-say{color:#4a6070;font-style:italic}
+
+/* LAYOUT */
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px}
+.section{padding:48px 0}
+.white-bg{background:var(--white)}
+.alt-bg{background:var(--g3)}
+.slate-bg{background:var(--slate)}
+.divider{height:1px;background:var(--g1)}
+
+/* SECTION HEADERS */
+.section-eyebrow{display:inline-block;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:12px}
+.eyebrow-1{background:rgba(73,166,1,.12);color:var(--green)}
+.eyebrow-2{background:rgba(0,118,191,.12);color:var(--blue)}
+.eyebrow-3{background:rgba(41,164,162,.12);color:var(--teal)}
+.eyebrow-4{background:rgba(85,66,167,.12);color:var(--purple)}
+.section-title{font-size:26px;font-weight:600;color:var(--slate);margin-bottom:6px}
+.section-sub{font-size:13px;color:#4a6070;line-height:1.6;max-width:720px}
+.section-head{margin-bottom:32px}
+
+/* CLIENT HEADER */
+.client-header{background:linear-gradient(135deg,var(--slate) 0%,#1e3347 100%);padding:56px 40px 48px;color:#fff;position:relative;overflow:hidden}
+.client-header::after{content:'';position:absolute;top:0;right:0;width:400px;height:100%;background:linear-gradient(135deg,transparent,rgba(73,166,1,.08));clip-path:polygon(30% 0,100% 0,100% 100%,0% 100%)}
+.header-eyebrow{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--lgreen);margin-bottom:14px}
+.client-header h1{font-size:40px;font-weight:300;line-height:1.15;margin-bottom:10px}
+.client-header h1 strong{font-weight:700;color:var(--green)}
+.header-period{font-size:14px;color:var(--g1);margin-bottom:28px}
+.market-pills{display:flex;flex-wrap:wrap;gap:8px}
+.mpill{border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600;color:rgba(255,255,255,.85);background:rgba(255,255,255,.07)}
+
+/* VALUE ANCHOR BANNER */
+.value-anchor-banner{background:linear-gradient(120deg,var(--slate) 0%,#1e3a4a 100%);padding:28px 40px;border-bottom:3px solid var(--green)}
+.vab-inner{max-width:820px;margin:0 auto;text-align:center}
+.vab-eyebrow{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--lgreen);margin-bottom:10px}
+.vab-text{font-family:'Roboto Slab',serif;font-size:16px;font-weight:300;color:#fff;line-height:1.7}
+.vab-text strong{font-weight:600;color:var(--lgreen)}
+
+/* KPI GRID */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:16px}
+.kpi{background:#fff;border-radius:12px;padding:22px 20px;border-top:4px solid var(--green);box-shadow:0 2px 10px rgba(46,68,86,.07)}
+.kpi.blue{border-top-color:var(--blue)}.kpi.teal{border-top-color:var(--teal)}.kpi.orange{border-top-color:var(--orange)}.kpi.purple{border-top-color:var(--purple)}.kpi.slate{border-top-color:var(--slate)}
+.kpi-lbl{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#4a6070;margin-bottom:8px}
+.kpi-val{font-family:'Roboto Slab',serif;font-size:26px;font-weight:700;color:var(--slate);line-height:1;margin-bottom:6px}
+.kpi-ctx{font-size:11px;color:#4a6070}
+.kpi-ctx.good{color:var(--green);font-weight:700}
+.kpi-why{font-size:11px;color:var(--teal);line-height:1.5;margin-top:10px;padding-top:10px;border-top:1px solid var(--g2);font-style:italic}
+
+/* TIMELINE */
+.timeline-bar{background:#fff;border-bottom:1px solid var(--g1);padding:28px 40px}
+.tl-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#4a6070;margin-bottom:20px}
+.tl-swimlane{position:relative}
+.tl-sw-axis{display:grid;grid-template-columns:150px 1fr;margin-bottom:6px}
+.tl-sw-axis-labels{position:relative;height:14px}
+.tl-sw-axis-labels span{position:absolute;font-size:9px;font-weight:700;letter-spacing:.05em;color:#c8d4de;transform:translateX(-50%)}
+.tl-now-wrap{position:absolute;top:20px;bottom:0;left:150px;right:0;pointer-events:none}
+.tl-now-line{position:absolute;top:0;bottom:-8px;width:2px;background:var(--slate);opacity:.35}
+.tl-now-pill{position:absolute;top:-18px;left:50%;transform:translateX(-50%);background:var(--slate);color:#fff;font-size:9px;font-weight:700;letter-spacing:.06em;padding:2px 8px;border-radius:10px;white-space:nowrap}
+.tl-sw-row{display:grid;grid-template-columns:150px 1fr;align-items:center;gap:12px;margin-bottom:8px}
+.tl-sw-lbl{font-size:11px;font-weight:600;color:#4a6070;text-align:right;padding-right:4px}
+.tl-sw-track{position:relative;height:30px;background:var(--g2);border-radius:6px}
+.tl-sw-bar{position:absolute;top:0;height:100%;border-radius:6px;display:flex;align-items:center;padding:0 12px;font-size:10px;font-weight:700;letter-spacing:.05em;white-space:nowrap;overflow:hidden;min-width:60px}
+.tl-sw-bar.done{background:var(--green);color:#fff}
+.tl-sw-bar.active{background:linear-gradient(to right,var(--slate) 80%,rgba(46,68,86,.2));color:#fff}
+.tl-sw-bar.building{background:var(--teal);color:#fff;opacity:.75}
+.tl-sw-bar.upcoming{background:var(--g1);color:#4a6070}
+
+/* CARDS */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(46,68,86,.06)}
+.card-lbl{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#4a6070;margin-bottom:10px}
+.card-val{font-family:'Roboto Slab',serif;font-size:36px;font-weight:700;color:var(--slate);margin-bottom:6px;line-height:1}
+.card-sub{font-size:12px;color:#4a6070;line-height:1.6}
+
+/* PROGRESS */
+.prog-row{margin-bottom:22px}
+.prog-header{display:flex;justify-content:space-between;margin-bottom:7px}
+.prog-name{font-size:13px;font-weight:600}
+.prog-nums{font-size:12px;color:#4a6070}
+.prog-track{height:8px;background:var(--g2);border-radius:4px;position:relative}
+.prog-fill{height:100%;border-radius:4px;transition:width .6s ease}
+.prog-fill.g{background:var(--green)}.prog-fill.b{background:var(--blue)}.prog-fill.t{background:var(--teal)}.prog-fill.o{background:var(--orange)}.prog-fill.s{background:var(--g1)}
+.prog-target{position:absolute;top:-5px;width:3px;height:18px;background:var(--slate);border-radius:2px}
+.prog-status{font-size:11px;font-weight:700;margin-top:5px}
+.st-good{color:var(--green)}.st-warn{color:var(--orange)}.st-pend{color:#4a6070}
+
+/* CLIENT Q BOX */
+.client-q-box{background:linear-gradient(135deg,rgba(73,166,1,.08),rgba(135,208,1,.05));border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:18px 24px;margin-bottom:28px;display:flex;flex-direction:column;gap:6px}
+.client-q-box.future{background:rgba(210,220,232,.25);border-left-color:var(--g1)}
+.client-q-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--green)}
+.client-q-box.future .client-q-label{color:#4a6070}
+.client-q-text{font-family:'Roboto Slab',serif;font-size:15px;font-weight:600;color:var(--slate);font-style:italic}
+.client-q-answer{font-size:12px;color:#556070;line-height:1.6;margin-top:4px}
+
+/* NOTE BOX */
+.note-box{padding:16px 20px;border-radius:8px;font-size:13px;line-height:1.6;margin-top:20px}
+.note-box.teal{background:rgba(41,164,162,.07);border:1px solid rgba(41,164,162,.2)}
+.note-box.green{background:rgba(73,166,1,.07);border:1px solid rgba(73,166,1,.2)}
+
+/* GOALS SECTION */
+.goals-section{background:var(--slate);padding:48px 0;color:#fff}
+.goals-section .section-title{color:#fff}
+.goals-section .section-sub{color:var(--g1)}
+.goals-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:28px}
+.goal-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:22px}
+.goal-molina{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--g1);opacity:.6;margin-bottom:6px}
+.goal-statement{font-size:14px;font-weight:600;color:#fff;line-height:1.5;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.1)}
+.goal-pyx{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--lgreen);margin-bottom:6px}
+.goal-action{font-size:13px;color:rgba(255,255,255,.8);line-height:1.6}
+.goal-metric{display:inline-block;margin-top:10px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:rgba(73,166,1,.2);color:var(--lgreen)}
+.goal-metric.pending{background:rgba(255,255,255,.08);color:rgba(255,255,255,.4)}
+
+/* SLA */
+.sla-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.sla-card{background:var(--g3);border-radius:12px;padding:20px;border-left:4px solid var(--g1)}
+.sla-card.good{border-left-color:var(--green);background:#f0faf4}
+.sla-card.warn{border-left-color:var(--orange);background:#fdf7f0}
+.sla-card.pend{border-left-color:var(--g1)}
+.sla-name{font-size:12px;font-weight:700;color:var(--slate);margin-bottom:4px}
+.sla-target{font-size:11px;color:#4a6070;margin-bottom:12px}
+.sla-status{font-size:11px;font-weight:700;margin-top:8px}
+.sla-status.good{color:var(--green)}.sla-status.warn{color:var(--orange)}.sla-status.pend{color:#4a6070}
+
+/* NEXT MEETING */
+.next-meeting{background:#fff;padding:48px 0}
+.meeting-grid{display:grid;grid-template-columns:1fr 2fr;gap:24px;margin-top:28px}
+.meeting-meta{background:var(--g3);border-radius:12px;padding:24px}
+.meeting-meta-row{display:flex;flex-direction:column;margin-bottom:18px}
+.meeting-meta-row:last-child{margin-bottom:0}
+.meeting-meta-lbl{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#4a6070;margin-bottom:4px}
+.meeting-meta-val{font-size:14px;font-weight:600;color:var(--slate)}
+.meeting-agenda{background:#fff;border:1px solid var(--g1);border-radius:12px;overflow:hidden}
+.agenda-item{display:grid;grid-template-columns:56px 1fr;border-bottom:1px solid var(--g2)}
+.agenda-item:last-child{border-bottom:none}
+.agenda-num{background:var(--g3);display:flex;align-items:center;justify-content:center;font-family:'Roboto Slab',serif;font-size:18px;font-weight:700;color:#c8d4de;padding:20px 0}
+.agenda-content{padding:18px 20px}
+.agenda-title{font-size:14px;font-weight:700;color:var(--slate);margin-bottom:4px}
+.agenda-desc{font-size:12px;color:#4a6070;line-height:1.5}
+.agenda-time{font-size:11px;font-weight:700;color:var(--green);margin-top:6px}
+
+/* PRIORITY SECTIONS */
+.priority-section{padding:56px 0}
+.priority-section.alt{background:var(--g3)}
+.priority-section.dark{background:linear-gradient(135deg,var(--slate),#1a2f3d);color:#fff}
+.priority-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(73,166,1,.12);border:1px solid rgba(73,166,1,.3);border-radius:20px;padding:4px 14px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:14px}
+.priority-badge.p2{background:rgba(41,164,162,.12);border-color:rgba(41,164,162,.3);color:var(--teal)}
+.priority-badge.p3{background:rgba(0,118,191,.12);border-color:rgba(0,118,191,.3);color:var(--blue)}
+.priority-title{font-family:'Roboto Slab',serif;font-size:28px;font-weight:600;color:var(--slate);margin-bottom:10px}
+.priority-section.dark .priority-title{color:#fff}
+.priority-molina-q{font-size:14px;font-style:italic;color:#4a6070;margin-bottom:16px;padding-left:16px;border-left:3px solid var(--g1)}
+.priority-section.dark .priority-molina-q{color:rgba(255,255,255,.5);border-left-color:rgba(255,255,255,.15)}
+.priority-answer{font-size:14px;color:#4a6070;line-height:1.7;max-width:780px;margin-bottom:28px}
+.priority-section.dark .priority-answer{color:rgba(255,255,255,.65)}
+.journey-context{display:flex;align-items:flex-start;gap:10px;background:rgba(73,166,1,.06);border:1px solid rgba(73,166,1,.15);border-radius:8px;padding:12px 16px;margin-bottom:28px;font-size:12px;color:#4a6070;line-height:1.5}
+.journey-context-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);white-space:nowrap;margin-top:2px}
+
+/* BARRIER BARS */
+.barrier-row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--g2)}
 .barrier-row:last-of-type{border-bottom:none}
-.barrier-name{font-size:13px;font-weight:500;min-width:180px}
-.barrier-bar-wrap{flex:1;background:#eff1f3;border-radius:4px;height:8px}
-.barrier-bar-fill{height:8px;border-radius:4px}
-.barrier-val{font-size:11px;color:#6b7f8f;min-width:36px;text-align:right}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.data-table{width:100%;border-collapse:collapse;font-size:12px}
-.data-table th{background:#2e4456;color:#fff;padding:10px 12px;text-align:left;font-weight:600;font-size:11px}
-.data-table td{padding:9px 12px;border-bottom:1px solid #eff1f3}
-.data-table tr:last-child td{border-bottom:none}
-.enroll-bar{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #eff1f3}
-.enroll-bar:last-of-type{border-bottom:none}
-.enroll-month{font-size:13px;font-weight:700;color:#2e4456;min-width:80px}
-.enroll-fill-wrap{flex:1;background:#eff1f3;border-radius:4px;height:12px}
-.enroll-fill{height:12px;border-radius:4px;background:#49a601}
-.enroll-val{font-size:13px;font-weight:700;color:#2e4456;min-width:40px;text-align:right}
-.footer{margin-top:40px;padding:20px;text-align:center;font-size:11px;color:#aab5c0;border-top:1px solid #d2dce8}
-@media(max-width:700px){.two-col{grid-template-columns:1fr}}
+.barrier-name{font-size:13px;font-weight:500;min-width:190px}
+.barrier-track{flex:1;background:var(--g2);border-radius:4px;height:8px}
+.barrier-fill{height:8px;border-radius:4px;background:var(--teal)}
+.barrier-val{font-size:12px;font-weight:700;color:var(--slate);min-width:36px;text-align:right}
+
+/* FOOTER */
+.footer{background:linear-gradient(135deg,var(--slate),#1a2a38);padding:36px 40px;color:rgba(255,255,255,.55);font-size:12px;line-height:1.8;text-align:center}
+.footer-logo{font-family:'Roboto Slab',serif;font-weight:300;font-size:16px;color:#fff;margin-bottom:8px}
+.footer-logo span{color:var(--green);font-weight:600}
+
+@media(max-width:768px){.meeting-grid,.goals-grid{grid-template-columns:1fr}.tl-sw-row,.tl-sw-axis{grid-template-columns:100px 1fr}}
 </style>
 </head>
 <body>
 
-<div class="nav">
-  <div class="nav-brand">Pyx <span>Health</span></div>
-  <div class="nav-tabs">
-    <div class="nav-tab active" onclick="showPage('overview',this)">Program Overview</div>
-    <div class="nav-tab" onclick="showPage('screening',this)">Screening &amp; Loneliness</div>
-    <div class="nav-tab" onclick="showPage('engagement',this)">Engagement</div>
-    <div class="nav-tab" onclick="showPage('value',this)">Plan Value</div>
-  </div>
-  <div class="nav-right">
-    <button class="tp-btn" id="tp-toggle" onclick="toggleTP()">Talking Points</button>
-  </div>
-</div>
+<nav class="tab-nav">
+  <div class="nav-logo">pyx <span>health</span></div>
+  <button class="tab-btn active" onclick="switchTab('client',this)">Client View</button>
+  <button class="tab-btn" onclick="switchTab('value',this)">Value View ✦</button>
+  <button class="tp-toggle-btn" id="tp-toggle" onclick="toggleTP(this)">Talking Points</button>
+</nav>
 
-<!-- ============================================================
-     PROGRAM OVERVIEW
-     ============================================================ -->
-<div class="page active" id="page-overview">
 
-  <div class="value-anchor">
-    <svg viewBox="0 0 48 48" fill="none" style="width:48px;height:48px;flex-shrink:0">
-      <circle cx="24" cy="24" r="24" fill="rgba(73,166,1,.2)"/>
-      <path d="M16 24h16M28 18l6 6-6 6" stroke="#87d001" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <div class="va-text">
-      <h2>In the first 12 weeks of the Navigate engagement model, Pyx has enrolled <strong>502 RMHP members</strong> — establishing loneliness, distress, and SDoH baselines for a population carrying compounding need. <strong>41% screen lonely at intake. 73% have at least one identified social need.</strong></h2>
-      <p>Navigate engagement launched March 15, 2026. Enrollment has grown steadily every month. 72% of enrolled members are active on the Pyx app; 28% are supported exclusively through the compassionate support center. The 55–64 age cohort is the largest segment, and the highest-acuity SDoH need sits in the 45–54 group — both priority populations for RMHP quality performance.</p>
+<!-- =============================================
+     CLIENT VIEW
+============================================= -->
+<div id="tab-client" class="tab-content active">
+
+  <div class="client-header">
+    <div class="header-eyebrow">Navigate Program · Month 3 of 12</div>
+    <h1>Rocky Mountain Health Plan <strong>Navigate</strong></h1>
+    <p class="header-period">SOW 5 · Go Live March 15, 2026 · Data through June 8, 2026</p>
+    <div class="market-pills">
+      <span class="mpill">Colorado — General Medicaid</span>
+      <span class="mpill">Grand Junction · UHC</span>
     </div>
   </div>
 
-  <div class="data-note"><strong>Dashboard data current through 6/8/2026 · Navigate contract start 3/15/2026 (Week 12) · </strong>Rocky Mountain Health Plans · General Medicaid.</div>
-
-  <div class="section-header" style="margin-top:0">
-    <div class="section-label">Enrollment</div>
-    <div class="section-title">502 Members Enrolled — First 12 Weeks</div>
-    <div class="section-divider"></div>
-  </div>
-  <div class="kpi-grid">
-    <div class="kpi green"><div class="kpi-lbl">Total Enrolled</div><div class="kpi-val">502</div><div class="kpi-ctx">Navigate contract start 3/15/2026</div></div>
-    <div class="kpi blue"><div class="kpi-lbl">App Enrollment</div><div class="kpi-val">72%</div><div class="kpi-ctx">359 app · 143 support center only</div></div>
-    <div class="kpi teal"><div class="kpi-lbl">Primary Language</div><div class="kpi-val">86/14%</div><div class="kpi-ctx">English / Spanish · app supports both</div></div>
-    <div class="kpi orange"><div class="kpi-lbl">Bad Phone Numbers</div><div class="kpi-val">0%</div><div class="kpi-ctx">Clean eligibility file — 0% undialable</div></div>
-    <div class="kpi purple"><div class="kpi-lbl">Largest Age Cohort</div><div class="kpi-val">55–64</div><div class="kpi-ctx">23% of enrolled population</div></div>
-    <div class="kpi lgreen"><div class="kpi-lbl">Highest SDoH Need</div><div class="kpi-val">45–54</div><div class="kpi-ctx">Avg 5.6 SDoH needs per member</div></div>
-  </div>
-
-  <div class="billing-table">
-    <div style="font-family:'Roboto Slab',serif;font-weight:600;font-size:14px;color:#2e4456;margin-bottom:16px">Monthly Enrollment — Navigate Model (New Members)</div>
-    <div class="enroll-bar">
-      <div class="enroll-month">March</div>
-      <div class="enroll-fill-wrap"><div class="enroll-fill" style="width:46%"></div></div>
-      <div class="enroll-val">85</div>
-    </div>
-    <div class="enroll-bar">
-      <div class="enroll-month">April</div>
-      <div class="enroll-fill-wrap"><div class="enroll-fill" style="width:91%"></div></div>
-      <div class="enroll-val">168</div>
-    </div>
-    <div class="enroll-bar">
-      <div class="enroll-month">May</div>
-      <div class="enroll-fill-wrap"><div class="enroll-fill" style="width:100%"></div></div>
-      <div class="enroll-val">185</div>
-    </div>
-    <div class="enroll-bar">
-      <div class="enroll-month">June (partial)</div>
-      <div class="enroll-fill-wrap"><div class="enroll-fill" style="width:35%;background:#87d001"></div></div>
-      <div class="enroll-val">64</div>
-    </div>
-  </div>
-
-  <div class="section-header">
-    <div class="section-label">Population</div>
-    <div class="section-title">Age Distribution — Enrolled Members</div>
-    <div class="section-divider"></div>
-  </div>
-  <div class="billing-table">
-    <table class="data-table">
-      <thead>
-        <tr><th>Age Group</th><th>% of Enrolled</th><th>Avg UCLA-3</th><th>Avg PHQ-4</th><th>Avg SDoH Needs</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>18–24</td><td>15%</td><td>4.7</td><td>3.5</td><td>2.7</td></tr>
-        <tr><td>25–34</td><td>16%</td><td>5.2</td><td>4.3</td><td>2.5</td></tr>
-        <tr><td>35–44</td><td>16%</td><td>5.0</td><td>3.4</td><td>4.2</td></tr>
-        <tr><td>45–54</td><td>18%</td><td>5.3</td><td>4.2</td><td>5.6 ↑</td></tr>
-        <tr><td>55–64</td><td>23%</td><td>5.2</td><td>4.8 ↑</td><td>3.4</td></tr>
-        <tr><td>65–74</td><td>10%</td><td>5.0</td><td>3.7</td><td>2.3</td></tr>
-        <tr><td>75–84</td><td>1%</td><td>4.2</td><td>2.8</td><td>2.0</td></tr>
-        <tr><td>85–94</td><td>1%</td><td>4.0</td><td>1.0</td><td>—</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="spotlight teal">
-    <div class="tag">45–54 COHORT — COMPOUND BURDEN</div>
-    <h3>45–54 carries the highest SDoH need in the program — 5.6 distinct needs per member on average</h3>
-    <p>The 45–54 age cohort (18% of enrolled) presents with the highest social burden in the program. At 5.6 average SDoH needs per member, these members are managing multiple simultaneous challenges — economic instability, social isolation, health literacy gaps, and care access barriers — that compound their risk of avoidable utilization and missed quality measures. The 55–64 cohort, meanwhile, carries the highest PHQ-4 distress score (4.8), sitting at the lower boundary of moderate distress. <strong>Both cohorts are among RMHP's highest-value populations for Navigate intervention.</strong></p>
-  </div>
-  <div class="tp-block" id="tp-overview">
-    <h4>Talking Points — Program Overview</h4>
-    <ul>
-      <li>502 members enrolled in 12 weeks demonstrates the Navigate model is reaching RMHP's priority population at scale. March's 85 enrollments reflect a half-month launch; April through May show the program at full operating pace with 168 and 185 new enrollments respectively</li>
-      <li>0% bad phone numbers is a data quality signal — RMHP's eligibility file has clean, dialable contact information for this population. That directly translates into higher outreach conversion rates compared to plans with significant contact data gaps</li>
-      <li>72% app enrollment alongside 28% CSC-only shows the Navigate model is reaching members across both digital and non-digital engagement preferences. The CSC serves as the safety net for members who don't engage through the app — no member is left behind by digital-first design</li>
-      <li>The 45–54 cohort's 5.6 average SDoH needs per member is the most important population intelligence in the table — these are RMHP's highest-complexity, highest-cost members outside of care management, and Pyx is the only program currently generating this data at the member level</li>
-    </ul>
-  </div>
-
-  <div class="footer">Pyx Health | RMHP | Navigate Program | Confidential</div>
-</div>
-
-<!-- ============================================================
-     SCREENING & LONELINESS
-     ============================================================ -->
-<div class="page" id="page-screening">
-
-  <div class="value-anchor">
-    <svg viewBox="0 0 48 48" fill="none" style="width:48px;height:48px;flex-shrink:0">
-      <circle cx="24" cy="24" r="24" fill="rgba(73,166,1,.2)"/>
-      <path d="M16 24h16M28 18l6 6-6 6" stroke="#87d001" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <div class="va-text">
-      <h2>41% of enrolled members screen lonely at intake. Of those, <strong>61% also show PHQ-4 psychological distress.</strong> 73% have at least one SDoH need — with Social &amp; Community isolation the dominant barrier at 73% of screened members.</h2>
-      <p>Loneliness at onboarding is trending upward month over month — 1% in March rising to 53% in June — reflecting increasingly acute need in the population being reached as outreach expands. These are the leading indicators that precede care avoidance, missed quality measures, and avoidable utilization.</p>
-    </div>
-  </div>
-
-  <div class="section-header" style="margin-top:0">
-    <div class="section-label">UCLA-3 &amp; PHQ-4</div>
-    <div class="section-title">Loneliness &amp; Distress Baselines — Enrolled Members</div>
-    <div class="section-divider"></div>
-  </div>
-  <div class="kpi-grid">
-    <div class="kpi teal"><div class="kpi-lbl">Avg UCLA-3 — All Members</div><div class="kpi-val">5.1</div><div class="kpi-ctx">520 screenings · scale 3–9; ≥6 = lonely</div></div>
-    <div class="kpi purple"><div class="kpi-lbl">Screen Lonely</div><div class="kpi-val">41%</div><div class="kpi-ctx">UCLA-3 ≥6 at intake</div></div>
-    <div class="kpi orange"><div class="kpi-lbl">High Acuity Lonely</div><div class="kpi-val">8%</div><div class="kpi-ctx">Score 9 — most severe isolation</div></div>
-    <div class="kpi blue"><div class="kpi-lbl">Avg PHQ-4 — All Members</div><div class="kpi-val">4.0</div><div class="kpi-ctx">510 screenings · mild-moderate range</div></div>
-    <div class="kpi green"><div class="kpi-lbl">Lonely → Distress</div><div class="kpi-val">61%</div><div class="kpi-ctx">Of lonely members, PHQ-4 ≥3</div></div>
-    <div class="kpi slate"><div class="kpi-lbl">Lonely + SDoH Need</div><div class="kpi-val">75%</div><div class="kpi-ctx">Of lonely members with ≥1 social need</div></div>
-  </div>
-
-  <div class="spotlight slate">
-    <div class="tag">LONELINESS AT ONBOARDING — TRENDING UP</div>
-    <h3>1% lonely at March launch → 53% in June — the program is reaching increasingly isolated members as outreach expands</h3>
-    <p>The loneliness-at-onboarding rate has climbed each month since Navigate launched: March 1%, April 40%, May 43%, June 53%. This is not a program quality issue — it is a population signal. As outreach reaches deeper into the eligible file, Pyx is encountering members with greater social isolation at first contact. <strong>The members being enrolled now are carrying the most acute need. They are also the members where Navigate's human-first model has the highest opportunity to intervene before that isolation drives behavioral health escalation.</strong></p>
-  </div>
-
-  <div class="section-header">
-    <div class="section-label teal">SDoH Barriers</div>
-    <div class="section-title">What's Keeping RMHP Members from Care</div>
-    <div class="section-divider"></div>
-  </div>
-  <div class="kpi-grid">
-    <div class="kpi teal"><div class="kpi-lbl">SDoH Positive Rate</div><div class="kpi-val">73%</div><div class="kpi-ctx">481 PRAPARE screenings completed</div></div>
-    <div class="kpi orange"><div class="kpi-lbl">Avg Needs / Member</div><div class="kpi-val">3.2</div><div class="kpi-ctx">Across screened population</div></div>
-    <div class="kpi purple"><div class="kpi-lbl">45–54 Avg Needs</div><div class="kpi-val">5.6</div><div class="kpi-ctx">Highest burden cohort in the program</div></div>
-    <div class="kpi green"><div class="kpi-lbl">Well-Being Assessments</div><div class="kpi-val">404</div><div class="kpi-ctx">Completed since contract start</div></div>
-  </div>
-
-  <div class="billing-table">
-    <div style="font-family:'Roboto Slab',serif;font-weight:600;font-size:14px;color:#2e4456;margin-bottom:14px">PRAPARE Barrier Domains — RMHP Members</div>
-    <div class="barrier-row"><div class="barrier-name">Social &amp; Community</div><div class="barrier-bar-wrap"><div class="barrier-bar-fill" style="background:#29a4a2;width:100%"></div></div><div class="barrier-val">73%</div></div>
-    <div class="barrier-row"><div class="barrier-name">Economic Stability</div><div class="barrier-bar-wrap"><div class="barrier-bar-fill" style="background:#29a4a2;width:62%"></div></div><div class="barrier-val">45%</div></div>
-    <div class="barrier-row"><div class="barrier-name">Health Literacy</div><div class="barrier-bar-wrap"><div class="barrier-bar-fill" style="background:#29a4a2;width:36%"></div></div><div class="barrier-val">26%</div></div>
-    <div class="barrier-row"><div class="barrier-name">Medication Adherence</div><div class="barrier-bar-wrap"><div class="barrier-bar-fill" style="background:#29a4a2;width:30%"></div></div><div class="barrier-val">22%</div></div>
-    <div class="barrier-row"><div class="barrier-name">Healthy Days</div><div class="barrier-bar-wrap"><div class="barrier-bar-fill" style="background:#29a4a2;width:29%"></div></div><div class="barrier-val">21%</div></div>
-    <div class="barrier-row"><div class="barrier-name">Care Gap</div><div class="barrier-bar-wrap"><div class="barrier-bar-fill" style="background:#29a4a2;width:29%"></div></div><div class="barrier-val">21%</div></div>
-    <div class="barrier-row"><div class="barrier-name">Access to Care</div><div class="barrier-bar-wrap"><div class="barrier-bar-fill" style="background:#29a4a2;width:19%"></div></div><div class="barrier-val">14%</div></div>
-    <div class="barrier-row"><div class="barrier-name">Safety</div><div class="barrier-bar-wrap"><div class="barrier-bar-fill" style="background:#29a4a2;width:11%"></div></div><div class="barrier-val">8%</div></div>
-  </div>
-
-  <div class="spotlight orange">
-    <div class="tag">SOCIAL &amp; COMMUNITY — 73% OF SCREENED MEMBERS</div>
-    <h3>Social isolation is the dominant barrier — present in nearly 3 of 4 RMHP members screened, and directly driving the 41% loneliness rate at intake</h3>
-    <p>Social and Community barriers at 73% are not independent of the UCLA-3 loneliness scores — they are the mechanism. Members who lack social connection and community support are the same members screening lonely, showing PHQ-4 distress, and avoiding care. Economic Stability at 45% compounds this: members managing financial instability alongside social isolation face a compounding set of barriers that standard care management does not reach. <strong>These barriers are surfaced through Navigate engagement — not claims data, not prior authorization, not provider referral.</strong></p>
-  </div>
-  <div class="tp-block" id="tp-screening">
-    <h4>Talking Points — Screening &amp; Loneliness</h4>
-    <ul>
-      <li>41% loneliness at intake in a General Medicaid population is a high baseline — this is a population with established social isolation that predicts avoidance of preventive care, missed follow-up appointments, and behavioral health escalation. Pyx is establishing this baseline at enrollment, before any of those downstream events occur</li>
-      <li>The June loneliness-at-onboarding rate of 53% is the most important trend in the data — it means the members being reached now are carrying more acute need than those reached in March and April. Navigate's human-first model is designed for exactly this population; the deepening need is the program working as intended</li>
-      <li>61% lonely-to-distress crossover means that of the 41% who screen lonely, nearly two-thirds also show PHQ-4 distress. These members are at the front of the behavioral health escalation pipeline — they are the candidates for BH treatment initiation, missed HEDIS quality measures, and avoidable ED utilization if the barriers are not addressed</li>
-      <li>Social &amp; Community at 73% is not a standalone finding — it is the underlying mechanism for nearly every other barrier in the chart. A member who is socially isolated is less likely to know how to navigate care access, less likely to adhere to medication, and less likely to address care gaps. Resolving social isolation is upstream of resolving the downstream clinical barriers</li>
-      <li>Health Literacy at 26% is a critical RMHP quality measure implication — members who don't understand how to use their benefits, navigate the system, or understand care instructions drive the care gap and access barriers. Pyx identifies health literacy need at screening and routes members to navigation support before they miss an appointment</li>
-    </ul>
-  </div>
-
-  <div class="footer">Pyx Health | RMHP | Navigate Program | Screening &amp; Loneliness | Confidential</div>
-</div>
-
-<!-- ============================================================
-     ENGAGEMENT
-     ============================================================ -->
-<div class="page" id="page-engagement">
-
-  <div class="value-anchor">
-    <svg viewBox="0 0 48 48" fill="none" style="width:48px;height:48px;flex-shrink:0">
-      <circle cx="24" cy="24" r="24" fill="rgba(73,166,1,.2)"/>
-      <path d="M16 24h16M28 18l6 6-6 6" stroke="#87d001" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <div class="va-text">
-      <h2>325 members — 65% of all enrolled — have engaged directly with the Pyx human support center. <strong>69% of all calls are companion calls</strong> — sustained human connection, not transactional check-ins. 216 documented resource connections made in 12 weeks.</h2>
-      <p>The Navigate model is defined by the quality of the human engagement. Companion calls are the dominant call type, meaning members are receiving the sustained relationship that drives barrier resolution and behavior change. The support center is not a safety net — it is the primary engagement channel for this population.</p>
-    </div>
-  </div>
-
-  <div class="section-header" style="margin-top:0">
-    <div class="section-label">Human Connection</div>
-    <div class="section-title">Support Center Engagement — 12 Weeks</div>
-    <div class="section-divider"></div>
-  </div>
-  <div class="kpi-grid">
-    <div class="kpi green"><div class="kpi-lbl">Support Center Members</div><div class="kpi-val">325</div><div class="kpi-ctx">65% of all enrolled · ≥1 call</div></div>
-    <div class="kpi teal"><div class="kpi-lbl">Companion Calls</div><div class="kpi-val">69%</div><div class="kpi-ctx">Of all call volume — sustained engagement</div></div>
-    <div class="kpi blue"><div class="kpi-lbl">Resource Connections</div><div class="kpi-val">216</div><div class="kpi-ctx">Documented Colorado resource connections</div></div>
-    <div class="kpi orange"><div class="kpi-lbl">Loneliness Interventions</div><div class="kpi-val">77</div><div class="kpi-ctx">Positive psychology activities completed</div></div>
-    <div class="kpi purple"><div class="kpi-lbl">Avg Activities / Member</div><div class="kpi-val">6</div><div class="kpi-ctx">Max: 58 by a single member</div></div>
-    <div class="kpi lgreen"><div class="kpi-lbl">Pyxir Conversations</div><div class="kpi-val">26</div><div class="kpi-ctx">AI-assisted daily engagement interactions</div></div>
-  </div>
-
-  <div class="spotlight">
-    <div class="tag">COMPANION CALLS — 69% OF ALL CALL VOLUME</div>
-    <h3>The Navigate model is leading with human connection — companion calls, not transactional screenings, are driving the engagement relationship</h3>
-    <p>69% of all support center calls are companion calls — the sustained, trust-building outreach that makes the Navigate model different from standard engagement. General check-ins (11%), UCLA screenings (5%), PHQ screenings (5%), and SDOH screenings (3%) follow. This call mix reflects a program that prioritizes the member relationship first and uses clinical screening as a natural part of that relationship, not an interruption to it. <strong>325 members — 65% of all enrolled — have engaged in at least one call. In 12 weeks, this is the foundation of a sustained engagement model.</strong></p>
-  </div>
-
-  <div class="section-header">
-    <div class="section-label teal">Resources</div>
-    <div class="section-title">Top Resources Connected — Colorado-Specific</div>
-    <div class="section-divider"></div>
-  </div>
-  <div class="billing-table">
-    <div class="barrier-row"><div class="barrier-name">Member Portal</div><div class="barrier-bar-wrap"><div class="barrier-bar-fill" style="background:#49a601;width:100%"></div></div><div class="barrier-val">17%</div></div>
-    <div class="barrier-row"><div class="barrier-name">Member Services</div><div class="barrier-bar-wrap"><div class="barrier-bar-fill" style="background:#49a601;width:76%"></div></div><div class="barrier-val">13%</div></div>
-    <div class="barrier-row"><div class="barrier-name">Abuse Hotline</div><div class="barrier-bar-wrap"><div class="barrier-bar-fill" style="background:#49a601;width:76%"></div></div><div class="barrier-val">13%</div></div>
-    <div class="barrier-row"><div class="barrier-name">CDHS-SNAP: Nutrition Assistance</div><div class="barrier-bar-wrap"><div class="barrier-bar-fill" style="background:#49a601;width:76%"></div></div><div class="barrier-val">13%</div></div>
-    <div class="barrier-row"><div class="barrier-name">Health First Colorado</div><div class="barrier-bar-wrap"><div class="barrier-bar-fill" style="background:#49a601;width:53%"></div></div><div class="barrier-val">9%</div></div>
-    <div class="barrier-row"><div class="barrier-name">Colorado Homeless Shelter Directory</div><div class="barrier-bar-wrap"><div class="barrier-bar-fill" style="background:#49a601;width:53%"></div></div><div class="barrier-val">9%</div></div>
-    <div class="barrier-row"><div class="barrier-name">Find a Provider</div><div class="barrier-bar-wrap"><div class="barrier-bar-fill" style="background:#49a601;width:24%"></div></div><div class="barrier-val">4%</div></div>
-    <div class="barrier-row"><div class="barrier-name">CDHS – Caregiver Support</div><div class="barrier-bar-wrap"><div class="barrier-bar-fill" style="background:#49a601;width:24%"></div></div><div class="barrier-val">4%</div></div>
-    <div class="barrier-row"><div class="barrier-name">Behavioral Health Services Locator</div><div class="barrier-bar-wrap"><div class="barrier-bar-fill" style="background:#49a601;width:24%"></div></div><div class="barrier-val">4%</div></div>
-  </div>
-
-  <div class="tp-block" id="tp-engagement">
-    <h4>Talking Points — Engagement</h4>
-    <ul>
-      <li>325 members in the support center at 12 weeks is a strong early engagement rate — 65% of all enrolled members have had at least one human connection with the Pyx team. In a Navigate model built on human-first outreach, this is the foundational relationship that drives every downstream outcome</li>
-      <li>69% companion call volume is the Navigate model working as designed — the program is not leading with clinical screenings and using calls to collect data. It is leading with sustained human connection and using that connection to naturally surface clinical and social need. The screening data is a byproduct of the relationship, not the transaction</li>
-      <li>CDHS-SNAP (Nutrition Assistance) at 13% and Colorado Homeless Shelter Directory at 9% reflect the economic and housing barriers driving the SDoH numbers — 45% Economic Stability and 73% Social &amp; Community barriers are being directly addressed through these specific Colorado resource connections</li>
-      <li>Abuse Hotline at 13% is a safety signal — these are members for whom the Navigate engagement call surfaced a safety concern significant enough to warrant a crisis resource connection. This is the kind of clinical intelligence that standard care management outreach is neither designed nor equipped to uncover</li>
-      <li>The 216 resource connections in 12 weeks represent the barrier resolution work that makes everything else possible — a member connected to SNAP, a housing shelter, or a behavioral health locator is a member whose competing barriers are being reduced, making engagement in preventive care and quality measure closure more achievable</li>
-    </ul>
-  </div>
-
-  <div class="footer">Pyx Health | RMHP | Navigate Program | Engagement | Confidential</div>
-</div>
-
-<!-- ============================================================
-     PLAN VALUE
-     ============================================================ -->
-<div class="page" id="page-value">
-
-  <div class="value-anchor">
-    <svg viewBox="0 0 48 48" fill="none" style="width:48px;height:48px;flex-shrink:0">
-      <circle cx="24" cy="24" r="24" fill="rgba(73,166,1,.2)"/>
-      <path d="M16 24h16M28 18l6 6-6 6" stroke="#87d001" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-    <div class="va-text">
-      <h2>In 12 weeks, Pyx has already exceeded two of four contractual performance thresholds. <strong>95.8% SDOH screener completion vs. 60% target. ~61% resource connection rate vs. 60% target.</strong> The Navigate model is performing ahead of schedule.</h2>
-      <p>SOW 5 effective December 31, 2025. Navigate Go Live March 15, 2026. Performance metrics are measured from Go Live to year-end. At week 12, the program is building the data and engagement foundation that underpins annual performance assessment.</p>
-    </div>
-  </div>
-
-  <div class="section-header" style="margin-top:0">
-    <div class="section-label">Value Journey</div>
-    <div class="section-title">Where RMHP Is in the Pyx Value Journey — Week 12</div>
-    <div class="section-divider"></div>
-  </div>
-
-  <div style="background:#fff;border-radius:10px;padding:24px;margin-bottom:24px;box-shadow:0 1px 4px rgba(0,0,0,.06)">
-    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:0;position:relative">
-
-      <!-- Phase 1 - Complete -->
-      <div style="text-align:center;padding:0 8px">
-        <div style="width:36px;height:36px;border-radius:50%;background:#aab5c0;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 8px">✓</div>
-        <div style="font-size:10px;font-weight:700;color:#aab5c0;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Phase 1</div>
-        <div style="font-size:11px;font-weight:700;color:#6b7f8f;margin-bottom:4px;line-height:1.3">Launch &amp; Readiness</div>
-        <div style="font-size:10px;color:#aab5c0;line-height:1.4">Program live, outreach underway</div>
+  <!-- Program at a Glance -->
+  <div class="white-bg">
+    <div class="wrap"><div class="section">
+      <div class="section-head">
+        <div class="section-title">Program at a Glance</div>
+        <div class="section-sub">In the first 12 weeks of the Navigate engagement model, Pyx has enrolled 502 RMHP members, established loneliness and distress baselines for the enrolled population, and is exceeding key contractual performance thresholds. These are the leading indicators that precede measurable movement in care access, quality, and member experience.</div>
       </div>
-
-      <!-- Phase 2 - Active -->
-      <div style="text-align:center;padding:0 8px;background:#f0f9ec;border-radius:8px;border:2px solid #49a601">
-        <div style="width:36px;height:36px;border-radius:50%;background:#49a601;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;margin-top:8px">▶</div>
-        <div style="font-size:10px;font-weight:700;color:#49a601;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Phase 2 — NOW</div>
-        <div style="font-size:11px;font-weight:700;color:#2e4456;margin-bottom:4px;line-height:1.3">Reach &amp; Response</div>
-        <div style="font-size:10px;color:#6b7f8f;line-height:1.4;padding-bottom:8px">502 enrolled · members responding to outreach</div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-lbl">Members Enrolled</div><div class="kpi-val">502</div><div class="kpi-ctx">Since Go Live 3/15/2026</div></div>
+        <div class="kpi blue"><div class="kpi-lbl">App Enrollment</div><div class="kpi-val">72%</div><div class="kpi-ctx">359 app · 143 support center</div></div>
+        <div class="kpi teal"><div class="kpi-lbl">SDoH Screener</div><div class="kpi-val">95.8%</div><div class="kpi-ctx good">Target: 60% · Exceeds by 36 pts</div></div>
+        <div class="kpi orange"><div class="kpi-lbl">Screen Lonely</div><div class="kpi-val">41%</div><div class="kpi-ctx">UCLA-3 ≥6 at intake</div></div>
+        <div class="kpi purple"><div class="kpi-lbl">SDoH Positive</div><div class="kpi-val">73%</div><div class="kpi-ctx">481 PRAPARE screenings</div></div>
+        <div class="kpi slate"><div class="kpi-lbl">Support Center</div><div class="kpi-val">325</div><div class="kpi-ctx">65% of enrolled · ≥1 call</div></div>
       </div>
-
-      <!-- Phase 3 - Entering -->
-      <div style="text-align:center;padding:0 8px;background:#f0f9ec;border-radius:8px;border:2px solid #87d001">
-        <div style="width:36px;height:36px;border-radius:50%;background:#87d001;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;margin-top:8px">→</div>
-        <div style="font-size:10px;font-weight:700;color:#87d001;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Phase 3 — ENTERING</div>
-        <div style="font-size:11px;font-weight:700;color:#2e4456;margin-bottom:4px;line-height:1.3">Deep Engagement &amp; Barriers</div>
-        <div style="font-size:10px;color:#6b7f8f;line-height:1.4;padding-bottom:8px">73% SDoH positive · barriers surfacing</div>
+      <div class="tp-block">
+        <div class="tp-label">Talking Points — Program Overview</div>
+        <div class="tp-line"><span class="tp-stat">95.8% SDOH screener completion</span> — <span class="tp-say">"The contractual threshold is 60%. We're at 95.8% at week 12. That reflects a Navigate model designed to surface what members are dealing with — not just make contact, but have a real conversation that uncovers the barriers preventing care access."</span></div>
+        <div class="tp-line"><span class="tp-stat">41% lonely at intake</span> — <span class="tp-say">"Nearly half of enrolled members arrive with clinically significant social isolation. That's not a soft concern — UCLA-3 loneliness at this level is directly associated with care avoidance, lower medication adherence, and higher utilization risk. We're identifying it at enrollment, before those patterns solidify."</span></div>
+        <div class="tp-line"><span class="tp-stat">325 support center contacts</span> — <span class="tp-say">"65% of all enrolled members have had at least one human connection with the Pyx care team. These are real conversations — 69% are companion calls, not transactional screenings. That depth is what builds the trust that moves members to action."</span></div>
       </div>
+    </div></div>
+  </div>
 
-      <!-- Phase 4 - Ahead -->
-      <div style="text-align:center;padding:0 8px">
-        <div style="width:36px;height:36px;border-radius:50%;background:#eff1f3;color:#aab5c0;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 8px">4</div>
-        <div style="font-size:10px;font-weight:700;color:#aab5c0;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Phase 4</div>
-        <div style="font-size:11px;font-weight:700;color:#aab5c0;margin-bottom:4px;line-height:1.3">Activation &amp; Behavior Change</div>
-        <div style="font-size:10px;color:#d2dce8;line-height:1.4">Members doing something different</div>
-      </div>
-
-      <!-- Phase 5 - Ahead -->
-      <div style="text-align:center;padding:0 8px">
-        <div style="width:36px;height:36px;border-radius:50%;background:#eff1f3;color:#aab5c0;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 8px">5</div>
-        <div style="font-size:10px;font-weight:700;color:#aab5c0;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Phase 5</div>
-        <div style="font-size:11px;font-weight:700;color:#aab5c0;margin-bottom:4px;line-height:1.3">Impact &amp; Plan Value</div>
-        <div style="font-size:10px;color:#d2dce8;line-height:1.4">Quality, utilization &amp; cost impact</div>
-      </div>
-
-      <!-- Phase 6 - Ahead -->
-      <div style="text-align:center;padding:0 8px">
-        <div style="width:36px;height:36px;border-radius:50%;background:#eff1f3;color:#aab5c0;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 8px">6</div>
-        <div style="font-size:10px;font-weight:700;color:#aab5c0;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px">Phase 6</div>
-        <div style="font-size:11px;font-weight:700;color:#aab5c0;margin-bottom:4px;line-height:1.3">Renewal &amp; Expansion</div>
-        <div style="font-size:10px;color:#d2dce8;line-height:1.4">Where do we go next?</div>
-      </div>
-
-    </div>
-
-    <div style="margin-top:20px;padding-top:16px;border-top:1px solid #eff1f3">
-      <div style="font-size:12px;color:#6b7f8f;line-height:1.7">
-        <strong style="color:#2e4456">At week 12</strong>, RMHP is squarely in Phase 2 (Reach &amp; Response) with clear evidence of Phase 3 (Deep Engagement &amp; Barrier Visibility) already active. 502 members enrolled, outreach converting, and 73% of screened members showing at least one SDoH need — the program is surfacing the barrier intelligence that traditional outreach never captures. <strong style="color:#49a601">The next milestone: translating engagement depth into member behavior change (Phase 4).</strong>
+  <!-- Timeline -->
+  <div class="timeline-bar">
+    <div class="wrap">
+      <div class="tl-label">Client Value Journey &nbsp;·&nbsp; Navigate Month 3 of 12 &nbsp;·&nbsp; Reach, engagement, and barrier work run in parallel</div>
+      <div class="tl-swimlane">
+        <div class="tl-sw-axis">
+          <div></div>
+          <div class="tl-sw-axis-labels">
+            <span style="left:0%">Month 1</span>
+            <span style="left:25%">Month 4</span>
+            <span style="left:50%">Month 7</span>
+            <span style="left:75%">Month 9</span>
+            <span style="left:100%">Month 12</span>
+          </div>
+        </div>
+        <div class="tl-now-wrap">
+          <div class="tl-now-line" style="left:25%">
+            <div class="tl-now-pill">Now · Month 3</div>
+          </div>
+        </div>
+        <div class="tl-sw-row">
+          <div class="tl-sw-lbl">Launch &amp; Readiness</div>
+          <div class="tl-sw-track"><div class="tl-sw-bar done" style="left:0%;width:10%">Complete</div></div>
+        </div>
+        <div class="tl-sw-row">
+          <div class="tl-sw-lbl">Reach &amp; Response</div>
+          <div class="tl-sw-track"><div class="tl-sw-bar active" style="left:0%;width:90%">Ongoing ▶</div></div>
+        </div>
+        <div class="tl-sw-row">
+          <div class="tl-sw-lbl">Deep Engagement</div>
+          <div class="tl-sw-track"><div class="tl-sw-bar active" style="left:8%;width:82%">Active Now ▶</div></div>
+        </div>
+        <div class="tl-sw-row">
+          <div class="tl-sw-lbl">Activation</div>
+          <div class="tl-sw-track"><div class="tl-sw-bar building" style="left:25%;width:45%">Building →</div></div>
+        </div>
+        <div class="tl-sw-row">
+          <div class="tl-sw-lbl">Impact &amp; Value</div>
+          <div class="tl-sw-track"><div class="tl-sw-bar upcoming" style="left:50%;width:50%">Months 7–12</div></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="section-header">
-    <div class="section-label">Performance Metrics</div>
-    <div class="section-title">SOW 5 Targets vs. Current Performance</div>
-    <div class="section-divider"></div>
-  </div>
-  <div class="billing-table">
-    <table class="data-table">
-      <thead>
-        <tr><th>Metric</th><th>SOW 5 Target</th><th>Current (Week 12)</th><th>Status</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Engagement Rate</td>
-          <td>8% of members receive initial Engagement Service</td>
-          <td>65% of enrolled (325 of 502) engaged in ≥1 call</td>
-          <td><span style="background:#e6f7d5;color:#2a6200;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:700">On Track</span></td>
-        </tr>
-        <tr>
-          <td>Outreach Attempts</td>
-          <td>98% of Target File members outreached within 6 months</td>
-          <td>Ongoing — 6-month window opens Mar 15</td>
-          <td><span style="background:#fff3e0;color:#9a4a00;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:700">In Progress</span></td>
-        </tr>
-        <tr>
-          <td>SDOH Screener Completion</td>
-          <td>60% of Engaged Users complete SDoH screener</td>
-          <td>95.8% — 481 PRAPARE screenings of 502 enrolled</td>
-          <td><span style="background:#e6f7d5;color:#2a6200;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:700">Exceeds Target ✓</span></td>
-        </tr>
-        <tr>
-          <td>Social Needs Resource Connections</td>
-          <td>60% of positive-screen members connected to resources</td>
-          <td>~61% — 216 connections of ~351 positive screens</td>
-          <td><span style="background:#e6f7d5;color:#2a6200;padding:3px 10px;border-radius:10px;font-size:11px;font-weight:700">At Target ✓</span></td>
-        </tr>
-      </tbody>
-    </table>
+  <!-- Phase 1 -->
+  <div class="alt-bg">
+    <div class="wrap"><div class="section">
+      <div class="section-head">
+        <div class="section-eyebrow eyebrow-1">Phase 1 · Complete</div>
+        <div class="section-title">Launch &amp; Operational Readiness</div>
+        <div class="section-sub">Navigate launched on March 15, 2026. Members are being contacted at expected rates, the eligibility file is clean (0% bad phone numbers), and the program is operating as designed.</div>
+      </div>
+      <div class="card-grid">
+        <div class="card"><div class="card-lbl">Go Live Date</div><div class="card-val">Mar 15</div><div class="card-sub">2026 · On schedule · 0 days delayed from Implementation Period target</div></div>
+        <div class="card"><div class="card-lbl">Bad Phone Numbers</div><div class="card-val">0%</div><div class="card-sub">Clean eligibility file — every number is dialable. This is the single biggest driver of outreach conversion rate.</div></div>
+        <div class="card"><div class="card-lbl">Language Support</div><div class="card-val">EN / ES</div><div class="card-sub">86% English · 14% Spanish · app supports both languages from day one</div></div>
+      </div>
+    </div></div>
   </div>
 
-  <div class="spotlight">
-    <div class="tag">WEEK 12 — TWO TARGETS ALREADY MET</div>
-    <h3>95.8% SDOH screener completion — 36 points above the 60% contractual threshold at 12 weeks</h3>
-    <p>The SDOH screener completion rate of 95.8% reflects the Navigate model's depth of engagement. The SOW requires 60% completion among Engaged Users — Pyx is at 95.8% with the program still in early stages. <strong>This is not a metric that approaches target over time — the model is already screening nearly every enrolled member, generating the SDoH intelligence that feeds RMHP's quality reporting from week one.</strong></p>
+  <!-- Phase 2 -->
+  <div class="white-bg">
+    <div class="wrap"><div class="section">
+      <div class="section-head">
+        <div class="section-eyebrow eyebrow-2">Phase 2 · Ongoing</div>
+        <div class="section-title">Reach &amp; Response</div>
+        <div class="section-sub">Outreach continues into the RMHP eligible population. New members are enrolling every month. Reach & Response runs in parallel with Deep Engagement — members from Month 1 are already in barrier work while new members are still being brought in.</div>
+      </div>
+      <div class="client-q-box">
+        <span class="client-q-label">What RMHP is wondering</span>
+        <span class="client-q-text">"Are we reaching the right members and are they responding?"</span>
+        <span class="client-q-answer">Yes. 502 members enrolled across 12 weeks, with enrollment accelerating in May (185 new members). The 55–64 age cohort — 23% of enrolled — is the largest segment and carries the highest PHQ-4 distress score (4.8). The 45–54 cohort carries the highest social burden at 5.6 average SDoH needs per member. The Navigate model is reaching the members with the most compounding need.</span>
+      </div>
+      <div class="card-grid">
+        <div class="card"><div class="card-lbl">March (half-month)</div><div class="card-val">85</div><div class="card-sub">First enrollments from Go Live 3/15</div></div>
+        <div class="card"><div class="card-lbl">April</div><div class="card-val">168</div><div class="card-sub">Full month · program at operating pace</div></div>
+        <div class="card"><div class="card-lbl">May</div><div class="card-val">185</div><div class="card-sub">Highest single-month enrollment to date</div></div>
+        <div class="card"><div class="card-lbl">June (partial)</div><div class="card-val">64</div><div class="card-sub">Month in progress through 6/8</div></div>
+      </div>
+      <div class="tp-block">
+        <div class="tp-label">Talking Points — Reach &amp; Response</div>
+        <div class="tp-line"><span class="tp-stat">502 enrolled in 12 weeks</span> — <span class="tp-say">"The Navigate model is built to reach members with the most compounding need — not just the most reachable. The 45–54 cohort averaging 5.6 social needs per member and the 55–64 cohort carrying the highest distress scores confirm we're connecting with the right population."</span></div>
+        <div class="tp-line"><span class="tp-stat">0% bad phone numbers</span> — <span class="tp-say">"This is rare. A clean eligibility file means every outreach attempt has a real chance of connecting. When we compare this to markets where 7–20% of numbers are bad, the difference in conversion efficiency is significant."</span></div>
+      </div>
+    </div></div>
   </div>
 
-  <div class="section-header">
-    <div class="section-label blue">Contract</div>
-    <div class="section-title">SOW 5 — Navigate Engagement Fee Structure</div>
-    <div class="section-divider"></div>
-  </div>
-  <div class="kpi-grid">
-    <div class="kpi slate"><div class="kpi-lbl">Annual Platform Fee</div><div class="kpi-val">$40K</div><div class="kpi-ctx">Per year · paid at SOW execution</div></div>
-    <div class="kpi teal"><div class="kpi-lbl">Welcome Engagement Fee</div><div class="kpi-val">$50</div><div class="kpi-ctx">Per member · one-time · on first bi-directional engagement</div></div>
-    <div class="kpi green"><div class="kpi-lbl">Ongoing Engagement Fee</div><div class="kpi-val">$65/mo</div><div class="kpi-ctx">Per Engaged User · maximum 6 months</div></div>
-    <div class="kpi purple"><div class="kpi-lbl">Max Per-Member Cost</div><div class="kpi-val">$440</div><div class="kpi-ctx">$50 welcome + $65 × 6 months</div></div>
-    <div class="kpi orange"><div class="kpi-lbl">Minimum Scope</div><div class="kpi-val">20,000</div><div class="kpi-ctx">Members for outreach and engagement per year</div></div>
-    <div class="kpi lgreen"><div class="kpi-lbl">Implementation Fee</div><div class="kpi-val">Waived</div><div class="kpi-ctx">No implementation cost</div></div>
+  <!-- Phase 3 -->
+  <div class="alt-bg">
+    <div class="wrap"><div class="section">
+      <div class="section-head">
+        <div class="section-eyebrow eyebrow-3">Phase 3 · Now Active</div>
+        <div class="section-title">Deep Engagement &amp; Barrier Visibility</div>
+        <div class="section-sub">Sustained engagement is surfacing barriers that standard outreach doesn't identify — social isolation, economic instability, and health literacy gaps that prevent members from accessing care. This is the intelligence that drives everything downstream.</div>
+      </div>
+      <div class="client-q-box">
+        <span class="client-q-label">What this data tells us</span>
+        <span class="client-q-text">"Are we learning anything meaningful that can change outcomes?"</span>
+        <span class="client-q-answer">Yes. 481 PRAPARE screenings completed — 73% of screened members have at least one SDoH need, averaging 3.2 per member. Social &amp; Community isolation is the dominant barrier at 73%, directly explaining the 41% loneliness rate at intake. Economic Stability at 45% compounds this — members managing financial instability alongside social isolation face layered barriers that standard care management cannot reach. Loneliness at onboarding is trending upward (1% in March → 53% in June), confirming we are reaching increasingly isolated members as outreach expands.</span>
+      </div>
+      <div class="card-grid">
+        <div class="card"><div class="card-lbl">PRAPARE Screenings</div><div class="card-val">481</div><div class="card-sub">95.8% completion rate · target 60% ✓</div><div class="kpi-why">Every screening is a barrier map that claims data cannot produce</div></div>
+        <div class="card"><div class="card-lbl">SDoH Positive Rate</div><div class="card-val">73%</div><div class="card-sub">Avg 3.2 distinct needs per member · 45–54 cohort at 5.6</div></div>
+        <div class="card"><div class="card-lbl">UCLA-3 Score</div><div class="card-val">5.1</div><div class="card-sub">520 screenings · 41% screen lonely (≥6) · trending up</div></div>
+        <div class="card"><div class="card-lbl">PHQ-4 Score</div><div class="card-val">4.0</div><div class="card-sub">510 screenings · 61% of lonely members also distressed</div></div>
+      </div>
+
+      <div style="background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(46,68,86,.06);margin-top:4px">
+        <div class="card-lbl" style="margin-bottom:16px">Top Barriers — RMHP Members</div>
+        <div class="barrier-row"><div class="barrier-name">Social &amp; Community</div><div class="barrier-track"><div class="barrier-fill" style="width:100%"></div></div><div class="barrier-val">73%</div></div>
+        <div class="barrier-row"><div class="barrier-name">Economic Stability</div><div class="barrier-track"><div class="barrier-fill" style="width:62%"></div></div><div class="barrier-val">45%</div></div>
+        <div class="barrier-row"><div class="barrier-name">Health Literacy</div><div class="barrier-track"><div class="barrier-fill" style="width:36%"></div></div><div class="barrier-val">26%</div></div>
+        <div class="barrier-row"><div class="barrier-name">Medication Adherence</div><div class="barrier-track"><div class="barrier-fill" style="width:30%"></div></div><div class="barrier-val">22%</div></div>
+        <div class="barrier-row"><div class="barrier-name">Healthy Days</div><div class="barrier-track"><div class="barrier-fill" style="width:29%"></div></div><div class="barrier-val">21%</div></div>
+        <div class="barrier-row"><div class="barrier-name">Care Gap</div><div class="barrier-track"><div class="barrier-fill" style="width:29%"></div></div><div class="barrier-val">21%</div></div>
+        <div class="barrier-row"><div class="barrier-name">Access to Care</div><div class="barrier-track"><div class="barrier-fill" style="width:19%"></div></div><div class="barrier-val">14%</div></div>
+      </div>
+
+      <div class="note-box teal">
+        <strong>What comes next:</strong> Once barriers are identified, we remove them. Resource connections (216 made to date), care navigation, and care gap support activate in Phase 4. Those outcomes appear below.
+      </div>
+      <div class="tp-block">
+        <div class="tp-label">Talking Points — Deep Engagement</div>
+        <div class="tp-line"><span class="tp-stat">Social &amp; Community at 73%</span> — <span class="tp-say">"Social isolation is not a standalone barrier. A member who is socially isolated is less likely to understand how to navigate their benefits, less likely to adhere to medication, and less likely to address care gaps — even when access is available. Resolving social isolation is upstream of resolving all the clinical barriers."</span></div>
+        <div class="tp-line"><span class="tp-stat">Loneliness trending from 1% to 53%</span> — <span class="tp-say">"This upward trend in loneliness at onboarding is not a quality concern — it's a population signal. As we reach deeper into the eligible file, we're encountering members with greater social isolation at first contact. The Navigate model is built exactly for this population."</span></div>
+        <div class="tp-line"><span class="tp-stat">Care Gap identified at 21%</span> — <span class="tp-say">"1 in 5 screened members has an identified care gap. Pyx is surfacing these gaps in the engagement conversation — before they show up as missed measures at year-end. That's the intervention point where the Navigate model has the most value."</span></div>
+      </div>
+    </div></div>
   </div>
 
-  <div class="billing-table">
-    <div style="font-family:'Roboto Slab',serif;font-weight:600;font-size:14px;color:#2e4456;margin-bottom:16px">Current Engagement Fees — Week 12 Estimate</div>
-    <div class="barrier-row">
-      <div class="barrier-name">Annual Platform Fee</div>
-      <div style="flex:1;font-size:13px;color:#6b7f8f">Paid at execution</div>
-      <div style="font-size:14px;font-weight:700;color:#2e4456;min-width:80px;text-align:right">$40,000</div>
+  <!-- Phase 4 (Ahead) -->
+  <div style="background:linear-gradient(160deg,var(--slate),#1a2d3e);color:#fff;padding:56px 0">
+    <div class="wrap">
+      <div class="section-eyebrow" style="background:rgba(135,208,1,.15);color:var(--lgreen)">Phases 4–5 · Months 4–12</div>
+      <div class="section-title" style="color:#fff;margin-top:10px">Activation &amp; Impact — Building Toward</div>
+      <div class="section-sub" style="color:var(--g1);margin-bottom:32px">Barrier identification leads to barrier resolution — and barrier resolution leads to member action. As engagement deepens through Month 12, we will demonstrate that sustained Navigate engagement produces measurable improvement in care access, quality metrics, and member experience for RMHP.</div>
+      <div class="client-q-box future">
+        <span class="client-q-label">What RMHP will be measuring</span>
+        <span class="client-q-text">"Is this helping our quality, utilization, and member experience goals?"</span>
+        <span class="client-q-answer">Care gap closure, medication adherence navigation, and SDOH resource connection rates populate from engagement data monthly. Quality measure movement is a lagging indicator — the leading indicators (barriers identified, care gaps surfaced, loneliness baselines established) are building that case right now in Month 3. We'll show the through-line from what we're doing today to the outcomes that follow.</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:8px">
+        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:26px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--lgreen);margin-bottom:8px">Care Gap Closure</div>
+          <div style="font-family:'Roboto Slab',serif;font-size:34px;font-weight:700;color:#fff;margin-bottom:10px">21%</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.6">Of screened members have an identified care gap. Navigate will support scheduling and care navigation for these members — turning identified gaps into closed gaps.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:26px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--lgreen);margin-bottom:8px">Medication Adherence</div>
+          <div style="font-family:'Roboto Slab',serif;font-size:34px;font-weight:700;color:#fff;margin-bottom:10px">22%</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.6">Of screened members identify medication adherence as a barrier. Navigation support for medication access is a direct HEDIS measure opportunity for Colorado Medicaid.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:26px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--lgreen);margin-bottom:8px">Loneliness Reduction</div>
+          <div style="font-family:'Roboto Slab',serif;font-size:34px;font-weight:700;color:#fff;margin-bottom:10px">41%</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.6">Baseline loneliness established. Sustained Navigate engagement targets measurable UCLA-3 improvement — the metric most directly predictive of member experience and care avoidance outcomes.</div>
+        </div>
+        <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:26px">
+          <div style="font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--lgreen);margin-bottom:8px">Resource Connections</div>
+          <div style="font-family:'Roboto Slab',serif;font-size:34px;font-weight:700;color:#fff;margin-bottom:10px">216</div>
+          <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.6">Documented SDOH resource connections in 12 weeks — SNAP nutrition assistance, Colorado homeless shelter directory, behavioral health services locator, and more. Accelerates as engagement deepens.</div>
+        </div>
+      </div>
     </div>
-    <div class="barrier-row">
-      <div class="barrier-name">Welcome Fees (502 members)</div>
-      <div style="flex:1;font-size:13px;color:#6b7f8f">502 × $50 · one-time</div>
-      <div style="font-size:14px;font-weight:700;color:#2e4456;min-width:80px;text-align:right">$25,100</div>
-    </div>
-    <div class="barrier-row">
-      <div class="barrier-name">Ongoing Engagement Fees</div>
-      <div style="flex:1;font-size:13px;color:#6b7f8f">325 engaged members × $65/mo × ~2.5 avg months</div>
-      <div style="font-size:14px;font-weight:700;color:#2e4456;min-width:80px;text-align:right">~$52,813</div>
-    </div>
-    <div class="barrier-row" style="border-bottom:none;background:#f6f6f6;border-radius:6px;padding:12px 0">
-      <div class="barrier-name" style="font-weight:700">Estimated Total to Date</div>
-      <div style="flex:1;font-size:12px;color:#6b7f8f">Week 12 · estimates only</div>
-      <div style="font-size:16px;font-weight:700;color:#49a601;min-width:80px;text-align:right">~$117,913</div>
+  </div>
+
+  <!-- Goals Mapping -->
+  <div class="goals-section">
+    <div class="wrap"><div class="section">
+      <div class="section-eyebrow" style="background:rgba(135,208,1,.15);color:var(--lgreen)">Your Goals · Our Commitment</div>
+      <div class="section-title" style="margin-top:10px">What RMHP Asked For — What We're Doing About It</div>
+      <div class="section-sub">From SOW 5 — the goals Pyx committed to when this contract was signed. Every Navigate engagement call, every SDOH screening, every resource connection is in service of these two priorities.</div>
+      <div class="goals-grid">
+        <div class="goal-card">
+          <div class="goal-molina">RMHP Goal 1</div>
+          <div class="goal-statement">"Provide empathetic connection with RMHP Members to reduce member loneliness and social isolation and improve health outcomes."</div>
+          <div class="goal-pyx">What Pyx Is Doing</div>
+          <div class="goal-action">Establishing UCLA-3 loneliness baselines at enrollment for every member. 41% screen lonely at intake — these are the members the Navigate model is designed to reach. 69% of support center calls are companion calls — sustained, trust-building connections that directly address social isolation. 61% of lonely members also show PHQ-4 distress; Navigate identifies and routes them toward behavioral health resources.</div>
+          <div class="goal-metric">UCLA-3 5.1 baseline established</div>
+          <div class="goal-metric" style="margin-left:6px">325 companion call members</div>
+        </div>
+        <div class="goal-card">
+          <div class="goal-molina">RMHP Goal 2</div>
+          <div class="goal-statement">"Support RMHP's care coordination requirements and member engagement goals with real-time, bi-directional outreach and support to targeted members."</div>
+          <div class="goal-pyx">What Pyx Is Doing</div>
+          <div class="goal-action">Real-time, bi-directional Navigate calls are the primary engagement channel — 69% companion calls, 11% general check-ins, 5% PHQ screenings. 95.8% SDOH screener completion means Pyx has care coordination intelligence for nearly every enrolled member. 86% urgent needs flagged trigger same-business-day callback — the safety net for highest-acuity members.</div>
+          <div class="goal-metric">95.8% SDOH completion · target 60% ✓</div>
+          <div class="goal-metric" style="margin-left:6px">216 resource connections</div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- SLA -->
+  <div class="white-bg">
+    <div class="wrap"><div class="section">
+      <div class="section-head">
+        <div class="section-title">Contractual Commitments — SOW 5</div>
+        <div class="section-sub">Pyx performance against SOW 5 Exhibit B performance metrics at week 12. Green means we're already meeting or exceeding what we promised.</div>
+      </div>
+      <div class="sla-grid">
+        <div class="sla-card good">
+          <div class="sla-name">SDOH Screener Completion</div>
+          <div class="sla-target">Target: 60% of Engaged Users complete SDoH screener</div>
+          <div class="prog-row" style="margin-bottom:6px">
+            <div class="prog-track"><div class="prog-fill g" style="width:100%"></div><div class="prog-target" style="left:60%"></div></div>
+          </div>
+          <div class="sla-status good">✓ 95.8% — Exceeds target by 36 points</div>
+        </div>
+        <div class="sla-card good">
+          <div class="sla-name">Social Needs Resource Connections</div>
+          <div class="sla-target">Target: 60% of positive-screen members connected to resources</div>
+          <div class="prog-row" style="margin-bottom:6px">
+            <div class="prog-track"><div class="prog-fill g" style="width:61%"></div><div class="prog-target" style="left:60%"></div></div>
+          </div>
+          <div class="sla-status good">✓ ~61% — At target · 216 connections of ~351 positive screens</div>
+        </div>
+        <div class="sla-card pend">
+          <div class="sla-name">Engagement Rate</div>
+          <div class="sla-target">Target: 8% of members receive initial Engagement Service</div>
+          <div class="prog-row" style="margin-bottom:6px">
+            <div class="prog-track"><div class="prog-fill b" style="width:35%"></div><div class="prog-target" style="left:8%"></div></div>
+          </div>
+          <div class="sla-status pend">→ On Track · measured at year-end against full eligibility file · 65% of enrolled engaged in support center</div>
+        </div>
+        <div class="sla-card pend">
+          <div class="sla-name">Outreach Attempts</div>
+          <div class="sla-target">Target: 98% of Target File members outreached within 6 months</div>
+          <div class="prog-row" style="margin-bottom:6px">
+            <div class="prog-track"><div class="prog-fill b" style="width:50%"></div><div class="prog-target" style="left:98%"></div></div>
+          </div>
+          <div class="sla-status pend">→ In Progress · 6-month window opened 3/15 · 0% bad phone numbers supports strong completion</div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Next Meeting -->
+  <div class="next-meeting">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-eyebrow eyebrow-2">Monthly Check-In</div>
+        <div class="section-title" style="margin-top:10px">This Month's Conversation</div>
+        <div class="section-sub">Recommended agenda for the next RMHP Navigate check-in with David Moklaizky (david.moklaizky@uhc.com). 30-minute standing monthly.</div>
+      </div>
+      <div class="meeting-grid">
+        <div class="meeting-meta">
+          <div class="meeting-meta-row"><div class="meeting-meta-lbl">Client Contact</div><div class="meeting-meta-val">David Moklaizky · UHC</div></div>
+          <div class="meeting-meta-row"><div class="meeting-meta-lbl">Program Month</div><div class="meeting-meta-val">Month 3 of 12</div></div>
+          <div class="meeting-meta-row"><div class="meeting-meta-lbl">Value Journey Phase</div><div class="meeting-meta-val">Reach &amp; Response → Deep Engagement</div></div>
+          <div class="meeting-meta-row"><div class="meeting-meta-lbl">Format</div><div class="meeting-meta-val">30 min · Monthly standing</div></div>
+        </div>
+        <div class="meeting-agenda">
+          <div class="agenda-item">
+            <div class="agenda-num">1</div>
+            <div class="agenda-content">
+              <div class="agenda-title">Program Health — Enrollment &amp; Outreach</div>
+              <div class="agenda-desc">502 enrolled, 0% bad numbers, May was highest enrollment month. Confirm eligibility file cadence and target population refresh timing.</div>
+              <div class="agenda-time">5 min</div>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <div class="agenda-num">2</div>
+            <div class="agenda-content">
+              <div class="agenda-title">What We're Learning — Barrier Intelligence</div>
+              <div class="agenda-desc">Social &amp; Community 73%, Economic Stability 45%, Care Gap 21%. Loneliness trending up to 53% in June. Discuss what RMHP sees in claims data vs. what Pyx is surfacing in engagement.</div>
+              <div class="agenda-time">10 min</div>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <div class="agenda-num">3</div>
+            <div class="agenda-content">
+              <div class="agenda-title">Performance vs. SOW Metrics</div>
+              <div class="agenda-desc">SDOH screener at 95.8% (target 60%). Resource connections at ~61% (target 60%). Both contractual thresholds met or exceeded at month 3.</div>
+              <div class="agenda-time">8 min</div>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <div class="agenda-num">4</div>
+            <div class="agenda-content">
+              <div class="agenda-title">What's Next — Activation Phase</div>
+              <div class="agenda-desc">Preview Phase 4: care gap closure, medication adherence navigation, SDOH resource connection acceleration. Discuss RMHP priorities for the back half of the contract year.</div>
+              <div class="agenda-time">7 min</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="tp-block" id="tp-value">
-    <h4>Talking Points — Plan Value &amp; Contract</h4>
-    <ul>
-      <li>Two of four contractual performance metrics are already being met or exceeded at week 12 — SDOH screener completion at 95.8% (target: 60%) and social needs resource connections at ~61% (target: 60%). The Navigate model is performing ahead of schedule on both clinical screening and barrier resolution</li>
-      <li>The SDOH screener completion rate of 95.8% is 36 points above the contractual threshold. This is not a program gradually building to target — it reflects the Navigate model's sustained engagement approach, where PRAPARE screening happens naturally within the member relationship rather than as a separate transaction</li>
-      <li>The Engagement Rate metric (8% of members receiving an Engagement Service) is the broadest target and applies to the full 57,490 eligibility file. At 502 enrolled in 12 weeks, the program is building toward that threshold — the outreach 6-month window opened March 15, and the metric is measured at year-end</li>
-      <li>The $440 maximum per-member cost ($50 welcome + $65 × 6 months) and the minimum 20,000-member scope mean the program's maximum annual cost ceiling is well-defined. For RMHP, the Navigate model is a predictable per-engagement spend aligned to actual member engagement, not a flat fee regardless of outcomes</li>
-    </ul>
+  <div class="footer">
+    <div class="footer-logo">pyx <span>health</span></div>
+    <div>Rocky Mountain Health Plan · Navigate Program · SOW 5 · Effective 12/31/2025</div>
+    <div>david.moklaizky@uhc.com · 2775 Crossroads Blvd, Grand Junction, CO 81506</div>
   </div>
 
-  <div class="footer">Pyx Health | RMHP | Navigate Program | Plan Value | Confidential · SOW 5 Effective 12/31/2025</div>
-</div>
+</div><!-- end client view -->
+
+
+<!-- =============================================
+     VALUE VIEW
+============================================= -->
+<div id="tab-value" class="tab-content">
+
+  <div class="client-header">
+    <div class="header-eyebrow">Partnership Value Report · Navigate Month 3 of 12</div>
+    <h1>RMHP Navigate <strong>Value View</strong></h1>
+    <p class="header-period">SOW 5 · March 15 – June 8, 2026 · Rocky Mountain Health Plan</p>
+    <div class="market-pills">
+      <span class="mpill">Colorado · General Medicaid</span>
+    </div>
+  </div>
+
+  <div class="value-anchor-banner">
+    <div class="vab-inner">
+      <div class="vab-eyebrow">Navigate Month 3 of 12 — Leading Indicators</div>
+      <div class="vab-text">In the first 12 weeks of Navigate, Pyx is <strong>outperforming on both contractual screening thresholds</strong>, establishing loneliness and distress baselines for 500+ RMHP members, and generating the barrier intelligence that <strong>drives care access and quality outcomes</strong>. The case for impact is being built now.</div>
+    </div>
+  </div>
+
+  <!-- Value KPIs -->
+  <div class="white-bg">
+    <div class="wrap"><div class="section">
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-lbl">Members with Navigate Baseline</div><div class="kpi-val">502</div><div class="kpi-ctx good">Loneliness · distress · SDoH — all documented</div></div>
+        <div class="kpi teal"><div class="kpi-lbl">SDOH Screener Rate</div><div class="kpi-val">95.8%</div><div class="kpi-ctx good">Contract target: 60% · Exceeds by 36 pts</div></div>
+        <div class="kpi orange"><div class="kpi-lbl">Lonely at Intake</div><div class="kpi-val">41%</div><div class="kpi-ctx">UCLA-3 ≥6 · 61% also show PHQ-4 distress</div></div>
+        <div class="kpi blue"><div class="kpi-lbl">SDoH Positive</div><div class="kpi-val">73%</div><div class="kpi-ctx">3.2 avg needs · 45–54 cohort at 5.6</div></div>
+        <div class="kpi purple"><div class="kpi-lbl">Resource Connections</div><div class="kpi-val">216</div><div class="kpi-ctx good">Barrier identified → barrier resolved</div></div>
+        <div class="kpi slate"><div class="kpi-lbl">Human Connections</div><div class="kpi-val">325</div><div class="kpi-ctx">65% of enrolled · 69% companion calls</div></div>
+      </div>
+    </div></div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline-bar">
+    <div class="wrap">
+      <div class="tl-label">How We Deliver — Pyx Value Journey · Multiple phases run in parallel</div>
+      <div class="tl-swimlane">
+        <div class="tl-sw-axis">
+          <div></div>
+          <div class="tl-sw-axis-labels">
+            <span style="left:0%">Month 1</span>
+            <span style="left:25%">Month 4</span>
+            <span style="left:50%">Month 7</span>
+            <span style="left:75%">Month 9</span>
+            <span style="left:100%">Month 12</span>
+          </div>
+        </div>
+        <div class="tl-now-wrap">
+          <div class="tl-now-line" style="left:25%">
+            <div class="tl-now-pill">Now · Month 3</div>
+          </div>
+        </div>
+        <div class="tl-sw-row"><div class="tl-sw-lbl">Launch &amp; Readiness</div><div class="tl-sw-track"><div class="tl-sw-bar done" style="left:0%;width:10%">Complete</div></div></div>
+        <div class="tl-sw-row"><div class="tl-sw-lbl">Reach &amp; Response</div><div class="tl-sw-track"><div class="tl-sw-bar active" style="left:0%;width:90%">Ongoing ▶</div></div></div>
+        <div class="tl-sw-row"><div class="tl-sw-lbl">Deep Engagement</div><div class="tl-sw-track"><div class="tl-sw-bar active" style="left:8%;width:82%">Active Now ▶</div></div></div>
+        <div class="tl-sw-row"><div class="tl-sw-lbl">Activation</div><div class="tl-sw-track"><div class="tl-sw-bar building" style="left:25%;width:45%">Building →</div></div></div>
+        <div class="tl-sw-row"><div class="tl-sw-lbl">Impact &amp; Value</div><div class="tl-sw-track"><div class="tl-sw-bar upcoming" style="left:50%;width:50%">Months 7–12</div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Priority 1 -->
+  <div class="white-bg priority-section">
+    <div class="wrap">
+      <div class="priority-badge">RMHP Priority 1</div>
+      <div class="priority-title">Reduce Member Loneliness &amp; Social Isolation</div>
+      <div class="priority-molina-q">"Provide empathetic connection with RMHP Members to reduce member loneliness and social isolation and improve health outcomes."</div>
+      <div class="priority-answer">The members experiencing the highest social isolation are now visible in the Navigate program. 41% screen lonely at intake (UCLA-3 ≥6). That's not a population characteristic that resolves on its own — social isolation predicts care avoidance, lower medication adherence, and higher behavioral health utilization. 61% of lonely members also show PHQ-4 distress, confirming the clinical pipeline. Pyx is establishing the baseline that makes improvement measurable — and delivering the consistent human connection that drives it.</div>
+      <div class="journey-context">
+        <span class="journey-context-lbl">Value Journey</span>
+        <span>Currently in <strong>Deep Engagement</strong> — loneliness and distress baselines established across 502 members. UCLA-3 improvement tracking begins as engagement duration increases through Month 12.</span>
+      </div>
+      <div class="card-grid">
+        <div class="card"><div class="card-lbl">UCLA-3 Avg — All Members</div><div class="card-val">5.1</div><div class="card-sub">520 screenings · approaching clinical threshold of 6 · baseline established for longitudinal tracking</div></div>
+        <div class="card"><div class="card-lbl">Screen Lonely (UCLA-3 ≥6)</div><div class="card-val">41%</div><div class="card-sub">8% high acuity (score 9) · 12% emerging (score 5) · 61% also show PHQ-4 distress</div></div>
+        <div class="card"><div class="card-lbl">Companion Calls</div><div class="card-val">69%</div><div class="card-sub">Of all support center call volume — sustained relationship-building, not transactional outreach · 325 distinct members</div></div>
+        <div class="card"><div class="card-lbl">Loneliness at Onboarding</div><div class="card-val">→ 53%</div><div class="card-sub">Trending: March 1% → April 40% → May 43% → June 53% — deepening population need being reached</div></div>
+      </div>
+      <div class="tp-block">
+        <div class="tp-label">Talking Points — Loneliness Reduction</div>
+        <div class="tp-line"><span class="tp-stat">UCLA-3 5.1 at intake</span> — <span class="tp-say">"We can't demonstrate UCLA-3 improvement without first establishing the baseline. It's established. 520 screenings in 12 weeks gives us the population picture — and the measurement foundation to show movement over the second half of the contract year."</span></div>
+        <div class="tp-line"><span class="tp-stat">61% lonely → distress crossover</span> — <span class="tp-say">"When a member screens lonely and also shows PHQ-4 distress, they're on the front end of a behavioral health trajectory. Navigate identifies this in the engagement conversation — not in a claims file 12 months after the trajectory has already produced utilization."</span></div>
+        <div class="tp-line"><span class="tp-stat">Loneliness trending up to 53% in June</span> — <span class="tp-say">"This tells us the members we're reaching now are more isolated than those we reached in March. That's the Navigate model working correctly — we're finding the hardest-to-reach members, not just the easiest to convert."</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Priority 2 -->
+  <div class="priority-section alt">
+    <div class="wrap">
+      <div class="priority-badge p2">RMHP Priority 2</div>
+      <div class="priority-title">Support Care Coordination Requirements</div>
+      <div class="priority-molina-q">"Support RMHP's care coordination requirements and member engagement goals with real-time, bi-directional outreach and support to targeted members."</div>
+      <div class="priority-answer">Bi-directional, real-time Navigate calls are the program's primary engagement mechanism — and they are generating the care coordination intelligence that matters. 73% of screened members have at least one identified social need. 21% have an identified care gap. 22% have a medication adherence barrier. These are the findings that feed care coordination decisions — surfaced through Navigate conversation, not claims analysis.</div>
+      <div class="journey-context">
+        <span class="journey-context-lbl">Value Journey</span>
+        <span>Barriers identified in <strong>Deep Engagement</strong>. Care gap navigation, medication adherence support, and SDOH resolution accelerate in <strong>Activation (Month 4+)</strong>.</span>
+      </div>
+      <div class="card-grid">
+        <div class="card"><div class="card-lbl">SDOH Screener Completion</div><div class="card-val">95.8%</div><div class="card-sub good" style="color:var(--green);font-weight:700">Contract target 60% — 36 points above threshold · 481 PRAPARE screenings</div></div>
+        <div class="card"><div class="card-lbl">Care Gap Identified</div><div class="card-val">21%</div><div class="card-sub">Of screened members · HEDIS-relevant gaps flagged before they become missed measures</div></div>
+        <div class="card"><div class="card-lbl">Medication Adherence Barrier</div><div class="card-val">22%</div><div class="card-sub">Navigate identifies the reason members aren't adhering — income, health literacy, access — and removes it</div></div>
+        <div class="card"><div class="card-lbl">Urgent Needs Flagged</div><div class="card-val">86%</div><div class="card-sub">Of screened members flagged urgent · same-business-day callback triggered · highest-acuity members prioritized</div></div>
+      </div>
+
+      <div style="background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 8px rgba(46,68,86,.06);margin-top:4px">
+        <div class="card-lbl" style="margin-bottom:16px">Care Coordination Intelligence — What Navigate Is Surfacing</div>
+        <div class="barrier-row"><div class="barrier-name">Social &amp; Community Isolation</div><div class="barrier-track"><div class="barrier-fill" style="width:100%;background:var(--teal)"></div></div><div class="barrier-val">73%</div></div>
+        <div class="barrier-row"><div class="barrier-name">Economic Instability</div><div class="barrier-track"><div class="barrier-fill" style="width:62%;background:var(--teal)"></div></div><div class="barrier-val">45%</div></div>
+        <div class="barrier-row"><div class="barrier-name">Health Literacy Gap</div><div class="barrier-track"><div class="barrier-fill" style="width:36%;background:var(--teal)"></div></div><div class="barrier-val">26%</div></div>
+        <div class="barrier-row"><div class="barrier-name">Medication Adherence</div><div class="barrier-track"><div class="barrier-fill" style="width:30%;background:var(--teal)"></div></div><div class="barrier-val">22%</div></div>
+        <div class="barrier-row"><div class="barrier-name">Care Gap</div><div class="barrier-track"><div class="barrier-fill" style="width:29%;background:var(--teal)"></div></div><div class="barrier-val">21%</div></div>
+        <div class="barrier-row"><div class="barrier-name">Access to Care</div><div class="barrier-track"><div class="barrier-fill" style="width:19%;background:var(--teal)"></div></div><div class="barrier-val">14%</div></div>
+      </div>
+
+      <div class="tp-block">
+        <div class="tp-label">Talking Points — Care Coordination</div>
+        <div class="tp-line"><span class="tp-stat">95.8% SDOH screener completion</span> — <span class="tp-say">"The contract requires 60%. At 95.8%, we have SDoH documentation for nearly every enrolled RMHP member. That's not a compliance achievement — it's a care coordination dataset. These are the social drivers behind the claims you're already seeing."</span></div>
+        <div class="tp-line"><span class="tp-stat">21% care gap identified</span> — <span class="tp-say">"1 in 5 screened members has a care gap that Pyx has documented in the Navigate conversation. These are HEDIS candidates — members whose gaps can be closed before year-end if the navigation support is in place. That's what Phase 4 activation delivers."</span></div>
+        <div class="tp-line"><span class="tp-stat">216 resource connections</span> — <span class="tp-say">"These are documented connections to specific Colorado resources — CDHS-SNAP nutrition assistance, behavioral health services locator, Colorado homeless shelter directory, caregiver support. Each one is a barrier resolved that was previously invisible to RMHP."</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Building Toward -->
+  <div class="priority-section dark">
+    <div class="wrap">
+      <div class="priority-badge" style="background:rgba(135,208,1,.15);border-color:rgba(135,208,1,.4);color:var(--lgreen)">Building Toward</div>
+      <div class="priority-title" style="color:#fff">The Case We're Building: Engagement → Outcomes</div>
+      <div class="priority-answer">As the Navigate cohort matures through Month 12, we will demonstrate that sustained engagement produces measurably better outcomes — connecting time-in-program directly to care gap closure, loneliness reduction, and quality measure movement. The framework below shows the path from Month 3 to Month 12.</div>
+
+      <div style="overflow-x:auto;margin-top:28px">
+        <table style="width:100%;border-collapse:collapse;font-size:13px;background:rgba(255,255,255,.04);border-radius:10px;overflow:hidden">
+          <thead>
+            <tr>
+              <th style="padding:14px 18px;text-align:left;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.5);border-bottom:1px solid rgba(255,255,255,.08)">Milestone</th>
+              <th style="padding:14px 18px;text-align:center;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--lgreen);border-bottom:1px solid rgba(255,255,255,.08)">Month 3 (Now)</th>
+              <th style="padding:14px 18px;text-align:center;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.5);border-bottom:1px solid rgba(255,255,255,.08)">Month 6</th>
+              <th style="padding:14px 18px;text-align:center;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.5);border-bottom:1px solid rgba(255,255,255,.08)">Month 12</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+              <td style="padding:14px 18px;color:rgba(255,255,255,.8);font-weight:600">Loneliness Baseline (UCLA-3)</td>
+              <td style="padding:14px 18px;text-align:center;color:var(--lgreen);font-weight:700">5.1 established</td>
+              <td style="padding:14px 18px;text-align:center;color:rgba(255,255,255,.3)">Trending tracked</td>
+              <td style="padding:14px 18px;text-align:center;color:rgba(255,255,255,.3)">Δ improvement</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+              <td style="padding:14px 18px;color:rgba(255,255,255,.8);font-weight:600">SDOH Screener Completion</td>
+              <td style="padding:14px 18px;text-align:center;color:var(--lgreen);font-weight:700">95.8% ✓</td>
+              <td style="padding:14px 18px;text-align:center;color:rgba(255,255,255,.3)">Sustained</td>
+              <td style="padding:14px 18px;text-align:center;color:rgba(255,255,255,.3)">Year-end report</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+              <td style="padding:14px 18px;color:rgba(255,255,255,.8);font-weight:600">Resource Connections</td>
+              <td style="padding:14px 18px;text-align:center;color:var(--lgreen);font-weight:700">216</td>
+              <td style="padding:14px 18px;text-align:center;color:rgba(255,255,255,.3)">500+</td>
+              <td style="padding:14px 18px;text-align:center;color:rgba(255,255,255,.3)">1,000+</td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,.05)">
+              <td style="padding:14px 18px;color:rgba(255,255,255,.8);font-weight:600">Care Gap Navigation</td>
+              <td style="padding:14px 18px;text-align:center;color:rgba(255,255,255,.3)">Identified (21%)</td>
+              <td style="padding:14px 18px;text-align:center;color:rgba(255,255,255,.3)">Navigation active</td>
+              <td style="padding:14px 18px;text-align:center;color:rgba(255,255,255,.3)">Closure tracking</td>
+            </tr>
+            <tr>
+              <td style="padding:14px 18px;color:rgba(255,255,255,.8);font-weight:600">Engagement Rate vs. SOW</td>
+              <td style="padding:14px 18px;text-align:center;color:var(--lgreen);font-weight:700">On track</td>
+              <td style="padding:14px 18px;text-align:center;color:rgba(255,255,255,.3)">Building</td>
+              <td style="padding:14px 18px;text-align:center;color:rgba(255,255,255,.3)">Annual assessment</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-logo">pyx <span>health</span></div>
+    <div>Rocky Mountain Health Plan · Navigate Program · SOW 5</div>
+    <div>Month 3 of 12 · Data through June 8, 2026</div>
+  </div>
+
+</div><!-- end value view -->
+
 
 <script>
-function showPage(id,el){
-  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active')});
-  document.querySelectorAll('.nav-tab').forEach(function(t){t.classList.remove('active')});
-  document.getElementById('page-'+id).classList.add('active');
-  el.classList.add('active');
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-content').forEach(function(t){t.classList.remove('active')});
+  document.querySelectorAll('.tab-btn').forEach(function(b){b.classList.remove('active')});
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
 }
-function toggleTP(){
-  var btn=document.getElementById('tp-toggle');
+function toggleTP(btn){
   var on=btn.classList.toggle('active');
   document.querySelectorAll('.tp-block').forEach(function(b){b.classList.toggle('visible',on)});
 }
